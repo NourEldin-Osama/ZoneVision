@@ -1,15 +1,20 @@
 [project]
-name = "detect-and-count-objects-in-polygon-zone"
+name = "ZoneVision"
 version = "0.1.0"
-description = "Add your description here"
+description = "Detect objects within a custom zone"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
     "supervision>=0.25.1",
     "ultralytics",
     "pillow",
-    "torch>=2.6.0+cu126",
-    "torchvision>=0.21.0+cu126",
+    "torch",
+    "torchvision",
+]
+
+[project.optional-dependencies]
+edit-video = [
+    "moviepy>=2.1.2"
 ]
 
 [tool.uv.sources]
