@@ -12,20 +12,23 @@ ZoneVision processes a video file or RTSP stream (e.g., `videos/Intersection.mp4
 
 The current implementation in `main.py` detects specific classes (`car`, `motorcycle`, `bus`, `truck`) and uses hardcoded zones, but it can be modified to detect other object types and use different zone configurations. Additionally, it can be used to process live video streams from cameras.
 
+**Note:** The configuration for video path, model path, device, detected classes, output size, and polygon zones is grouped at the top of `main.py` for easier modification. See the variables `VIDEO_PATH`, `MODEL_PATH`, `DEVICE`, `DETECT_CLASSES`, `RESIZE_OUTPUT`, and `POLYGONS`.
+
 ## Features
 
 - Object detection using YOLOE model.
-- Configurable object classes for detection (requires modification in `main.py`).
-- Support for multiple, user-definable polygonal zones (modifiable in `main.py`).
+- Configurable object classes for detection (edit `DETECT_CLASSES` in `main.py`).
+- Support for multiple, user-definable polygonal zones (edit `POLYGONS` in `main.py`).
 - Visual annotation of detected objects within zones using bounding boxes and labels.
 - Annotation of the defined zones on the video frames.
 - Saves the first frame of the video (`PolygonZone/first_frame.jpg`) to assist in defining zones using tools like [PolygonZone by Roboflow](https://polygonzone.roboflow.com/).
+- Modular and maintainable code structure for easy extension.
 
 ![First Frame for Zone Definition](PolygonZone/first_frame.jpg)
 
-After defining zones using PolygonZone, you can use the coordinates in the `polygons` list in `main.py`.
+After defining zones using PolygonZone, you can use the coordinates in the `POLYGONS` list in `main.py`.
 
-Image shows the zones defined in the `polygons` list in `main.py`.
+Image shows the zones defined in the `POLYGONS` list in `main.py`.
 ![Defined Zones](PolygonZone/Frame_with_zones.png)
 
 ## Installation
@@ -58,9 +61,9 @@ This project uses `uv` as the package manager.
 
 ## Usage
 
-1. Place your input video file in the `videos/` directory (or update the `video_path` variable in `main.py`).
-2. **Define Zones:** Modify the `polygons` list in `main.py` with the desired coordinates for your zones. You can use the `PolygonZone/first_frame.jpg` image (generated on the first run if it doesn't exist) and a tool like [PolygonZone](https://polygonzone.roboflow.com/) to get the coordinates.
-3. **(Optional) Modify Detected Classes:** To detect different objects, update the `names` list in `main.py`. Refer to the `ultralytics` documentation for available classes or custom model usage.
+1. Place your input video file in the `videos/` directory (or update the `VIDEO_PATH` variable at the top of `main.py`).
+2. **Define Zones:** Modify the `POLYGONS` list in `main.py` with the desired coordinates for your zones. You can use the `PolygonZone/first_frame.jpg` image (generated on the first run if it doesn't exist) and a tool like [PolygonZone](https://polygonzone.roboflow.com/) to get the coordinates.
+3. **(Optional) Modify Detected Classes:** To detect different objects, update the `DETECT_CLASSES` list in `main.py`. Refer to the `ultralytics` documentation for available classes or custom model usage.
 4. Run the main script:
 
     ```bash
